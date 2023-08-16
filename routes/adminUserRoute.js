@@ -1,9 +1,9 @@
 const express=require("express");
 const adminUserRouter=express.Router();
 const UserModel=require("../model/user.model");
-const middleware=require("../middleware/adminmiddleware");
+//const middleware=require("../middleware/adminmiddleware");
 
-adminUserRouter.post("/add",middleware,async(req,res)=>{
+adminUserRouter.post("/add",async(req,res)=>{
     try{
     const user=await UserModel.create(req.body) 
     res.send({"msg":"User created",user})
@@ -13,7 +13,7 @@ adminUserRouter.post("/add",middleware,async(req,res)=>{
     }
 })
 
-adminUserRouter.get("/",middleware,async(req,res)=>{
+adminUserRouter.get("/",async(req,res)=>{
     try{
         const {search,rating,minRating,maxRating,category,pageNo,perPage,sortBy,field}=req.query
         const query={}
@@ -62,7 +62,7 @@ adminUserRouter.get("/",middleware,async(req,res)=>{
 //     }
 //     });
 
-adminUserRouter.patch("/update/:userId",middleware,async(req,res)=>{
+adminUserRouter.patch("/update/:userId",async(req,res)=>{
     
     try{
     // const course=await CourseModel.findById(req.params.courseId)
@@ -76,7 +76,7 @@ adminUserRouter.patch("/update/:userId",middleware,async(req,res)=>{
 })
 
 
-adminUserRouter.delete("/delete/:userId",middleware,async(req,res)=>{
+adminUserRouter.delete("/delete/:userId",async(req,res)=>{
     
     try{
     // const course=await CourseModel.findById(req.params.courseId)

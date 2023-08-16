@@ -1,9 +1,9 @@
 const express=require("express");
 const admincourseRouter=express.Router();
 const CourseModel=require("../model/courseModel");
-const middleware=require("../middleware/adminmiddleware");
+//const middleware=require("../middleware/adminmiddleware");
 
-admincourseRouter.post("/add",middleware,async(req,res)=>{
+admincourseRouter.post("/add",async(req,res)=>{
     try{
     const course=await CourseModel.create(req.body) 
     res.send({"msg":"Course created",course})
@@ -13,7 +13,7 @@ admincourseRouter.post("/add",middleware,async(req,res)=>{
     }
 })
 
-admincourseRouter.get("/",middleware,async(req,res)=>{
+admincourseRouter.get("/",async(req,res)=>{
     try{
         const {search,rating,minRating,maxRating,category,pageNo,perPage,sortBy,field}=req.query
         const query={}
@@ -50,7 +50,7 @@ admincourseRouter.get("/",middleware,async(req,res)=>{
 })
 
 
-// admincourseRouter.get("/singleProductPage/:courseId",middleware,async(req, res) => {
+// admincourseRouter.get("/singleProductPage/:courseId",async(req, res) => {
 //     try{
 //         const {videos}=req.body
 //         const projection={videos:0}
@@ -62,7 +62,7 @@ admincourseRouter.get("/",middleware,async(req,res)=>{
 //     }
 //     });
 
-admincourseRouter.patch("/update/:courseId",middleware,async(req,res)=>{
+admincourseRouter.patch("/update/:courseId",async(req,res)=>{
     
     try{
     // const course=await CourseModel.findById(req.params.courseId)
@@ -76,7 +76,7 @@ admincourseRouter.patch("/update/:courseId",middleware,async(req,res)=>{
 })
 
 
-admincourseRouter.delete("/delete/:courseId",middleware,async(req,res)=>{
+admincourseRouter.delete("/delete/:courseId",async(req,res)=>{
     
     try{
     // const course=await CourseModel.findById(req.params.courseId)
